@@ -44,7 +44,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="ModelLibrary">
+    <Reference Include="ModelLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\SikonUWP\ModelLibrary\bin\Debug\netstandard2.0\ModelLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
