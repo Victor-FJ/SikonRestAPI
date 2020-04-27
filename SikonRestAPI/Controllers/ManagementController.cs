@@ -12,7 +12,7 @@ namespace SikonRestAPI.Controllers
     public class ManagementController : ApiController
     {
         //Posts the connectionstring
-        //POST: api/Manage
+        //POST: api/Manage/
         [HttpPost]
         [Route("api/Manage/")]
         public bool Post([FromBody] string connectionString)
@@ -21,6 +21,7 @@ namespace SikonRestAPI.Controllers
             {
                 using(SqlConnection conn = new SqlConnection(connectionString))
                 {
+                    conn.Open();
                     ManagementUtil.ConnectionString = connectionString;
                     return true;
                 }

@@ -91,16 +91,22 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\BasicUsersController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Controllers\ParticipantsController.cs" />
     <Compile Include="Controllers\SpeakersController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLUtility\EventManager.cs" />
+    <Compile Include="SQLUtility\ImageManager.cs" />
     <Compile Include="SQLUtility\ManageAdmin.cs" />
     <Compile Include="SQLUtility\ManageBasicUser.cs" />
     <Compile Include="SQLUtility\ManagementUtil.cs" />
+    <Compile Include="SQLUtility\ManageRoom.cs" />
     <Compile Include="SQLUtility\ManageParticipant.cs" />
     <Compile Include="SQLUtility\ManageSpeaker.cs" />
   </ItemGroup>
