@@ -89,11 +89,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLUtility\EventManager.cs" />
+    <Compile Include="SQLUtility\ImageManager.cs" />
     <Compile Include="SQLUtility\ManagementUtil.cs" />
   </ItemGroup>
   <ItemGroup>
