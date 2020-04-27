@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using ModelLibrary.Model;
+using SikonRestAPI.SQLUtility;
 
 namespace SikonRestAPI.SQLUtility
 {

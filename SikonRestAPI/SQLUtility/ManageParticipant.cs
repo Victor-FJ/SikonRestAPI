@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using SikonRestAPI.SQLUtility;
 using ModelLibrary.Model;
 
 namespace SikonRestAPI.SQLUtility
@@ -25,7 +26,7 @@ namespace SikonRestAPI.SQLUtility
             return participant;
         }
 
-
+        
 
         public Participant Get(string name)
         {

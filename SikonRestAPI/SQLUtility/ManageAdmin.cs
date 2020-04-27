@@ -52,7 +52,6 @@ namespace SikonRestAPI.SQLUtility
 
             SqlCommand cmd = new SqlCommand(INSERT, conn);
             cmd.Parameters.AddWithValue("@Name", user.UserName);
-            cmd.Parameters.AddWithValue("@PhoneNumber", user.Usertype);
             int numberOfRowsAffected = cmd.ExecuteNonQuery();
             bool ok = numberOfRowsAffected == 1;
 
