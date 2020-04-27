@@ -92,6 +92,7 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -99,6 +100,7 @@
     <Compile Include="SQLUtility\EventManager.cs" />
     <Compile Include="SQLUtility\ImageManager.cs" />
     <Compile Include="SQLUtility\ManagementUtil.cs" />
+    <Compile Include="SQLUtility\ManageRoom.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
