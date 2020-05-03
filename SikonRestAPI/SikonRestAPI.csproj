@@ -101,8 +101,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SQLUtility\EventManager.cs" />
-    <Compile Include="SQLUtility\ImageManager.cs" />
+    <Compile Include="SQLUtility\ManageEvent.cs" />
+    <Compile Include="SQLUtility\ManageImage.cs" />
     <Compile Include="SQLUtility\ManageAdmin.cs" />
     <Compile Include="SQLUtility\ManageBasicUser.cs" />
     <Compile Include="SQLUtility\ManagementUtil.cs" />

@@ -8,7 +8,7 @@ using SikonRestAPI.SQLUtility;
 
 namespace SikonRestAPI.SQLUtility
 {
-    public class EventManager
+    public class ManageEvent
     {
         private const string GetAllCmd = "SELECT * FROM Event";
         private const string GetOneCmd = "SELECT * FROM Event WHERE Event_id = @Id";
@@ -73,10 +73,9 @@ namespace SikonRestAPI.SQLUtility
             string[] split = reader.GetString(7).Split(':');
             eventSi.Time = new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), 0);
 
-            //Room
-            
-            //Speaker
 
+            eventSi.Room = new ManageRoom().Get(reader.GetString(8));
+            eventSi.Speaker = new ManageSpeaker().Get(reader.GetString(9));
             eventSi.ImageName = reader.GetString(10);
 
             return eventSi;
