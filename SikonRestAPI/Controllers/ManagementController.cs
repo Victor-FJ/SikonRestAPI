@@ -22,7 +22,7 @@ namespace SikonRestAPI.Controllers
                 using(SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                   // ManagementUtil.ConnectionString = connectionString;
+                    ManagementUtil.ConnectionString = connectionString;
                     return true;
                 }
             }
