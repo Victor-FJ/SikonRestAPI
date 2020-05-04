@@ -10,7 +10,7 @@ namespace SikonRestAPI.Controllers
 {
     public class ImageController : ApiController
     {
-        private static readonly ImageManager Manager = new ImageManager();
+        private static readonly ManageImage Manager = new ManageImage();
 
         //Gets all image names
         //GET: api/Image

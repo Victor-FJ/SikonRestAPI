@@ -11,11 +11,13 @@ namespace SikonRestAPI.SQLUtility
     public class ManageAdmin
     {
         public static string ConnectionString = ManagementUtil.ConnectionString;
+        //public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string GET_ALL = "Select * from Admin";
         private const string GET_ONE = "Select * from Admin where UserName = @Name";
         private const string INSERT = "Insert into Room values(@Name, @PhoneNumber)";
-        private const string UPDATE = "";
-        private const string DELETE = "";
+        private const string UPDATE = "Update Admin set UserName = @Name, PhoneNumber = @Phonenumber where UserName = @Name";
+        private const string DELETE = "Delete from Admin where UserName = @Name ";
+        private ManageBasicUser _basicUserManager = new ManageBasicUser();
 
         private Admin readAdmin(SqlDataReader reader)
         {
@@ -26,6 +28,24 @@ namespace SikonRestAPI.SQLUtility
         }
 
 
+        public IEnumerable<Admin> Get()
+        {
+            List<Admin> adminList = new List<Admin>();
+            SqlConnection conn = new SqlConnection(ConnectionString);
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand(GET_ALL, conn);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Admin admin = readAdmin(reader);
+                adminList.Add(admin);
+
+            }
+            conn.Close();
+            return adminList;
+        }
 
         public Admin Get(string name)
         {
@@ -45,17 +65,61 @@ namespace SikonRestAPI.SQLUtility
             return admin1;
         }
 
-        public bool Post(User user)
+        
+
+        public bool Post(Admin admin)
         {
             SqlConnection conn = new SqlConnection(ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(INSERT, conn);
-            cmd.Parameters.AddWithValue("@Name", user.UserName);
+            cmd.Parameters.AddWithValue("@Name", admin.UserName);
+            cmd.Parameters.AddWithValue("@Phonenumber", admin.PhoneNumber);
+
             int numberOfRowsAffected = cmd.ExecuteNonQuery();
             bool ok = numberOfRowsAffected == 1;
 
+            _basicUserManager.Post(admin);
+
+            conn.Close();
             return ok;
         }
+
+        public bool Put(Admin admin)
+        {
+            SqlConnection conn = new SqlConnection(ConnectionString);
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand(UPDATE, conn);
+            cmd.Parameters.AddWithValue("@Name", admin.UserName);
+            cmd.Parameters.AddWithValue("@Phonenumber", admin.PhoneNumber);
+
+            int numberOfRowsAffected = cmd.ExecuteNonQuery();
+            bool ok = numberOfRowsAffected == 1;
+
+            _basicUserManager.Put(admin);
+
+            conn.Close();
+            return ok;
+        }
+
+        public bool Delete(Admin admin)
+        {
+            SqlConnection conn = new SqlConnection(ConnectionString);
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand(DELETE, conn);
+
+            cmd.Parameters.AddWithValue("@Name", admin.UserName);
+
+            int numberOfRowsAffected = cmd.ExecuteNonQuery();
+            bool ok = numberOfRowsAffected == 1;
+
+            _basicUserManager.Delete(admin);
+
+            conn.Close();
+            return ok;
+        }
+
     }
 }

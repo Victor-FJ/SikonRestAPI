@@ -4,36 +4,42 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ModelLibrary.Model;
+using SikonRestAPI.SQLUtility;
 
 namespace SikonRestAPI.Controllers
 {
     public class BasicUsersController : ApiController
     {
+        private ManageBasicUser _basicUserManager = new ManageBasicUser();
         // GET: api/BasicUsers
-        public IEnumerable<string> Get()
+        public IEnumerable<User> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _basicUserManager.Get();
         }
 
         // GET: api/BasicUsers/5
-        public string Get(int id)
+        public User Get(string name, string password)
         {
-            return "value";
+            return _basicUserManager.Get(name, password);
         }
 
         // POST: api/BasicUsers
-        public void Post([FromBody]string value)
+        public void Post([FromBody]User value)
         {
+            _basicUserManager.Post(value);
         }
 
         // PUT: api/BasicUsers/5
-        public void Put(int id, [FromBody]string value)
+        public void Put([FromBody]User value)
         {
+            _basicUserManager.Put(value);
         }
 
         // DELETE: api/BasicUsers/5
-        public void Delete(int id)
+        public void Delete(User user)
         {
+            _basicUserManager.Delete(user);
         }
     }
 }

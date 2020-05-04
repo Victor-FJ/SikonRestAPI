@@ -4,36 +4,42 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ModelLibrary.Model;
+using SikonRestAPI.SQLUtility;
 
 namespace SikonRestAPI.Controllers
 {
     public class AdminsController : ApiController
     {
+        ManageAdmin adminManager = new ManageAdmin();
         // GET: api/Admins
-        public IEnumerable<string> Get()
+        public IEnumerable<Admin> Get()
         {
-            return new string[] { "value1", "value2" };
+            return adminManager.Get();
         }
 
         // GET: api/Admins/5
-        public string Get(int id)
+        public Admin Get(string Name)
         {
-            return "value";
+            return adminManager.Get(Name);
         }
 
         // POST: api/Admins
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Admin value)
         {
+            adminManager.Post(value);
         }
 
         // PUT: api/Admins/5
-        public void Put(int id, [FromBody]string value)
+        public void Put([FromBody]Admin value)
         {
+            adminManager.Put(value);
         }
 
         // DELETE: api/Admins/5
-        public void Delete(int id)
+        public void Delete(Admin admin)
         {
+            adminManager.Delete(admin); 
         }
     }
 }

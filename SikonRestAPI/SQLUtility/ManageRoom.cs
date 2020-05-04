@@ -16,7 +16,7 @@ namespace SikonRestAPI.SQLUtility
     {
         //private string connectRoom = ManagementUtil.ConnectionString;
 
-        private string connectRoom = "Data Source = nicolaiserver.database.windows.net; Initial Catalog = NicolaiDataBase; User ID = NicolaiAdmin; Password=Seacret1234;Connect Timeout = 30; Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private string connectRoom = "";
         //SQL setting call all rooms
         private const string GET_ALL = "select * from room";
         
