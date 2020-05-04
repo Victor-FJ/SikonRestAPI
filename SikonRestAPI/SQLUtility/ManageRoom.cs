@@ -21,16 +21,16 @@ namespace SikonRestAPI.SQLUtility
         private const string GET_ALL = "select * from room";
         
         //SQL setting call one room
-        private const string GET_ONE = "select * from room where Room_No = @RoomNo";
+        private const string GET_ONE = "select * from room WHERE Room_No = @RoomNo";
         
         //SQL setting inserts a new room in the database
-        private const string INSERT = "INSERT INTO Room VALUES(@RoomNo, @Location, @MaxNoPeople)";
+        private const string INSERT = "INSERT INTO room VALUES(@RoomNo, @Location, @MaxNoPeople)";
         
         //SQL setting update the change you wrote in a room
-        private const string UPDATE = "update room set Room_No = @RoomNo, LocationDes = @Location, MaxNoPeople = @MaxNoPeople where Room_No = @Id";
+        private const string UPDATE = "UPDATE room SET Room_No = @RoomNo, LocationDes = @Location, MaxNoPeople = @MaxNoPeople where Room_No = @Id";
 
         //SQL setting delete a room from the database
-        private const string DELETE = "delete from room where Room_No = @RoomNo";
+        private const string DELETE = "DELETE from room WHERE Room_No = @RoomNo";
 
 
         public IEnumerable<Room> Get()
