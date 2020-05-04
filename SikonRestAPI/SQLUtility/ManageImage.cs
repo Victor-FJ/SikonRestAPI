@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SikonRestAPI.SQLUtility
 {
-    public class ImageManager
+    public class ManageImage
     {
         private const string GetNamesCmd = "SELECT Name FROM Image;";
         private const string GetOneCmd = "SELECT Data FROM Image WHERE Name = @Name;";

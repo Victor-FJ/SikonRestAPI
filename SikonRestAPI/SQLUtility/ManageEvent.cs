@@ -8,12 +8,12 @@ using SikonRestAPI.SQLUtility;
 
 namespace SikonRestAPI.SQLUtility
 {
-    public class EventManager
+    public class ManageEvent
     {
         private const string GetAllCmd = "SELECT * FROM Event";
         private const string GetOneCmd = "SELECT * FROM Event WHERE Event_id = @Id";
-        private const string InsertCmd = "INSERT INTO Event VALUES(@Event_No, @Title, @Description, @Type, @Subject, @MaxNoParticipant, @Date, @Time, @Room_No, @Speaker, @Image_Name);";
-        private const string UpdateCmd = "UPDATE Event SET Title = @Title, Description = @Description, Type = @Type, Subject = @Subject, MaxNoParticipant = @MaxNoParticipant, Date = @Date, Time = @Time, Room_No = @Room_No, Speaker = @Speaker, Image_Name = @Image_Name WHERE Id = @Id;";
+        private const string InsertCmd = "INSERT INTO Event VALUES(@Event_No, @Title, @Description, @Type, @Subject, @MaxNoParticipant, @StartDate, @EndDate, @Room_No, @Speaker, @Image_Name);";
+        private const string UpdateCmd = "UPDATE Event SET Title = @Title, Description = @Description, Type = @Type, Subject = @Subject, MaxNoParticipant = @MaxNoParticipant, StartDate = @StartDate, EndDate = @EndDate, Room_No = @Room_No, Speaker = @Speaker, Image_Name = @Image_Name WHERE Id = @Id;";
         private const string DeleteCmd = "DELETE FROM Event WHERE Id = @Id;";
 
         public IEnumerable<Event> Get()
@@ -68,15 +68,13 @@ namespace SikonRestAPI.SQLUtility
             Enum.TryParse(reader.GetString(4), out Event.EventSubject subject);
             eventSi.Subject = subject;
             eventSi.MaxNoParticipant = reader.GetInt32(5);
-            eventSi.Date = reader.GetDateTime(6);
 
-            string[] split = reader.GetString(7).Split(':');
-            eventSi.Time = new TimeSpan(int.Parse(split[0]), int.Parse(split[1]), 0);
+            eventSi.StartDate = reader.GetDateTime(6);
+            eventSi.EndDate = reader.GetDateTime(7);
 
-            //Room
-            
-            //Speaker
 
+            eventSi.Room = new ManageRoom().Get(reader.GetString(8));
+            eventSi.Speaker = new ManageSpeaker().Get(reader.GetString(9));
             eventSi.ImageName = reader.GetString(10);
 
             return eventSi;
@@ -96,8 +94,8 @@ namespace SikonRestAPI.SQLUtility
                     cmd.Parameters.AddWithValue("@Type", eventSi.Type);
                     cmd.Parameters.AddWithValue("@Subject", eventSi.Subject);
                     cmd.Parameters.AddWithValue("@MaxNoParticipant", eventSi.MaxNoParticipant);
-                    cmd.Parameters.AddWithValue("@Date", eventSi.Date);
-                    cmd.Parameters.AddWithValue("@Time", eventSi.Time);
+                    cmd.Parameters.AddWithValue("@StartDate", eventSi.StartDate);
+                    cmd.Parameters.AddWithValue("@EndDate", eventSi.EndDate);
                     cmd.Parameters.AddWithValue("@Room_No", eventSi.Room.RoomNo);
                     cmd.Parameters.AddWithValue("@Speaker", eventSi.Speaker.UserName);
                     cmd.Parameters.AddWithValue("@Image_Name", eventSi.ImageName);
@@ -122,8 +120,8 @@ namespace SikonRestAPI.SQLUtility
                     cmd.Parameters.AddWithValue("@Type", eventSi.Type);
                     cmd.Parameters.AddWithValue("@Subject", eventSi.Subject);
                     cmd.Parameters.AddWithValue("@MaxNoParticipant", eventSi.MaxNoParticipant);
-                    cmd.Parameters.AddWithValue("@Date", eventSi.Date);
-                    cmd.Parameters.AddWithValue("@Time", eventSi.Time);
+                    cmd.Parameters.AddWithValue("@StartDate", eventSi.StartDate);
+                    cmd.Parameters.AddWithValue("@EndDate", eventSi.EndDate);
                     cmd.Parameters.AddWithValue("@Room_No", eventSi.Room.RoomNo);
                     cmd.Parameters.AddWithValue("@Speaker", eventSi.Speaker.UserName);
                     cmd.Parameters.AddWithValue("@Image_Name", eventSi.ImageName);
