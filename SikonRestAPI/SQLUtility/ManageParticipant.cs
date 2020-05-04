@@ -12,17 +12,21 @@ namespace SikonRestAPI.SQLUtility
     public class ManageParticipant
     {
         public static string ConnectionString = ManagementUtil.ConnectionString;
+        //public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string GET_ALL = "Select * from Participant";
         private const string GET_ONE = "Select * from Participant where UserName = @Name";
         private const string INSERT = "Insert into Participant values(@Name, @PersonType)";
         private const string UPDATE = "Update Participant set UserName = @Name, PersonType = @PersonType where UserName = @Name";
         private const string DELETE = "Delete from Participant where UserName = @Name";
+        private ManageBasicUser _basicUserManager = new ManageBasicUser();
 
         private Participant readParticipant(SqlDataReader reader)
         {
             Participant participant = new Participant();
-            Enum.TryParse(reader.GetString(1), out participant.Type);
+            Participant.PersonType parseresult;
 
+            Enum.TryParse(reader.GetString(1),out parseresult);
+            participant.Type = parseresult;
 
             return participant;
         }
@@ -75,9 +79,11 @@ namespace SikonRestAPI.SQLUtility
             cmd.Parameters.AddWithValue("@Name", participant.UserName);
             cmd.Parameters.AddWithValue("@PersonType", participant.Type);
 
+            _basicUserManager.Post(participant);
+
             int numberOfRowsAffected = cmd.ExecuteNonQuery();
             bool ok = numberOfRowsAffected == 1;
-
+            conn.Close();
             return ok;
         }
 
@@ -89,6 +95,8 @@ namespace SikonRestAPI.SQLUtility
             SqlCommand cmd = new SqlCommand(UPDATE, conn);
             cmd.Parameters.AddWithValue("@Name", participant.UserName);
             cmd.Parameters.AddWithValue("@PersonType", participant.Type);
+
+            _basicUserManager.Put(participant);
 
             int numberOfRowsAffected = cmd.ExecuteNonQuery();
             bool ok = numberOfRowsAffected == 1;
@@ -108,6 +116,8 @@ namespace SikonRestAPI.SQLUtility
 
             int numberOfRowsAffected = cmd.ExecuteNonQuery();
             bool ok = numberOfRowsAffected == 1;
+
+            _basicUserManager.Delete(participant);
 
             conn.Close();
             return ok;

@@ -4,36 +4,42 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ModelLibrary.Model;
+using SikonRestAPI.SQLUtility;
 
 namespace SikonRestAPI.Controllers
 {
     public class SpeakersController : ApiController
     {
+        private ManageSpeaker _speakerManager = new ManageSpeaker();
         // GET: api/Speakers
-        public IEnumerable<string> Get()
+        public IEnumerable<Speaker> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _speakerManager.Get();
         }
 
         // GET: api/Speakers/5
-        public string Get(int id)
+        public Speaker Get(string Name)
         {
-            return "value";
+            return _speakerManager.Get(Name);
         }
 
         // POST: api/Speakers
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Speaker value)
         {
+            _speakerManager.Post(value);
         }
 
         // PUT: api/Speakers/5
-        public void Put(int id, [FromBody]string value)
+        public void Put([FromBody]Speaker value)
         {
+            _speakerManager.Put(value);
         }
 
         // DELETE: api/Speakers/5
-        public void Delete(int id)
+        public void Delete(Speaker speaker)
         {
+            _speakerManager.Delete(speaker);
         }
     }
 }

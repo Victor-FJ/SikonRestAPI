@@ -10,6 +10,7 @@ namespace SikonRestAPI.SQLUtility
     public class ManageBasicUser
     {
         public static string ConnectionString = ManagementUtil.ConnectionString;
+        //public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string GET_ALL = "Select * from BasicUser";
         private const string GET_ONE = "Select * from BasicUser where UserName = @Name and Password = @Password";
         private const string INSERT = "Insert into BasicUser values(@Name, @Password)";
@@ -76,7 +77,7 @@ namespace SikonRestAPI.SQLUtility
             
             int numberOfRowsAffected = cmd.ExecuteNonQuery();
             bool ok = numberOfRowsAffected == 1;
-
+            conn.Close();
             return ok;
         }
 
