@@ -4,36 +4,43 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.UI.WebControls.WebParts;
+using ModelLibrary.Model;
+using SikonRestAPI.SQLUtility;
 
 namespace SikonRestAPI.Controllers
 {
     public class ParticipantsController : ApiController
     {
+        private ManageParticipant _participantManager = new ManageParticipant();
         // GET: api/Participants
-        public IEnumerable<string> Get()
+        public IEnumerable<Participant> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _participantManager.Get();
         }
 
         // GET: api/Participants/5
-        public string Get(int id)
+        public Participant Get(string Name)
         {
-            return "value";
+            return _participantManager.Get(Name);
         }
 
         // POST: api/Participants
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Participant value)
         {
+            _participantManager.Post(value);
         }
 
         // PUT: api/Participants/5
-        public void Put(int id, [FromBody]string value)
+        public void Put([FromBody]Participant value)
         {
+            _participantManager.Put(value);
         }
 
         // DELETE: api/Participants/5
-        public void Delete(int id)
+        public void Delete(Participant participant)
         {
+            _participantManager.Delete(participant);
         }
     }
 }
