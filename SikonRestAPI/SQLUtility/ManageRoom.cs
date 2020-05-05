@@ -14,9 +14,6 @@ namespace SikonRestAPI.SQLUtility
     /// </summary>
     public class ManageRoom
     {
-        //private string connectRoom = ManagementUtil.ConnectionString;
-
-        private string connectRoom = "";
         //SQL setting call all rooms
         private const string GET_ALL = "select * from room";
         
