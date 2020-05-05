@@ -37,7 +37,7 @@ namespace SikonRestAPI.SQLUtility
         {
             List<Room> liste = new List<Room>();
 
-            SqlConnection conn = new SqlConnection(connectRoom);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ALL, conn);
@@ -67,7 +67,7 @@ namespace SikonRestAPI.SQLUtility
         {
             Room room = null;
 
-            SqlConnection conn = new SqlConnection(connectRoom);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ONE, conn);
@@ -85,7 +85,7 @@ namespace SikonRestAPI.SQLUtility
         public bool Post(Room room)
         {
 
-            SqlConnection conn = new SqlConnection(connectRoom);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(INSERT, conn);
@@ -103,7 +103,7 @@ namespace SikonRestAPI.SQLUtility
         {
             
 
-            SqlConnection conn = new SqlConnection(connectRoom);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(UPDATE, conn);
@@ -122,7 +122,7 @@ namespace SikonRestAPI.SQLUtility
         public bool Delete(string roomNo)
         {
 
-            SqlConnection conn = new SqlConnection(connectRoom);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(DELETE, conn);
