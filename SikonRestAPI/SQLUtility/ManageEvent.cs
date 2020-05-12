@@ -63,10 +63,8 @@ namespace SikonRestAPI.SQLUtility
             eventSi.Title = reader.GetString(1);
             eventSi.Description = reader.GetString(2);
 
-            Enum.TryParse(reader.GetString(3), out Event.EventType type);
-            eventSi.Type = type;
-            Enum.TryParse(reader.GetString(4), out Event.EventSubject subject);
-            eventSi.Subject = subject;
+            eventSi.Type = (Event.EventType)reader.GetInt32(3);
+            eventSi.Subject = (Event.EventSubject)reader.GetInt32(4);
             eventSi.MaxNoParticipant = reader.GetInt32(5);
 
             eventSi.StartDate = reader.GetDateTime(6);

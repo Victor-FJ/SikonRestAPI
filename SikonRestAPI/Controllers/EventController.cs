@@ -5,36 +5,42 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ModelLibrary.Model;
+using SikonRestAPI.SQLUtility;
 
 namespace SikonRestAPI.Controllers
 {
     public class EventController : ApiController
     {
+        private readonly ManageEvent _manager = new ManageEvent();
+
         // GET: api/Event
         public IEnumerable<Event> Get()
         {
-            return null;
+            return _manager.Get();
         }
 
         // GET: api/Event/5
-        public string Get(int id)
+        public Event Get(int id)
         {
-            return "value";
+            return _manager.Get(id);
         }
 
         // POST: api/Event
-        public void Post([FromBody]string value)
+        public bool Post([FromBody]Event value)
         {
+            return _manager.Post(value);
         }
 
         // PUT: api/Event/5
-        public void Put(int id, [FromBody]string value)
+        public bool Put(int id, [FromBody]Event value)
         {
+            return _manager.Put(id, value);
         }
 
         // DELETE: api/Event/5
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            return _manager.Delete(id);
         }
     }
 }
