@@ -9,10 +9,10 @@ namespace SikonRestAPI.SQLUtility
 {
     public class ManageBasicUser
     {
-        public static string ConnectionString = ManagementUtil.ConnectionString;
-        //public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //public static string ConnectionString = ManagementUtil.ConnectionString;
+        public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=Seacret1234;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string GET_ALL = "Select * from BasicUser";
-        private const string GET_ONE = "Select * from BasicUser where UserName = @Name and Password = @Password";
+        private const string GET_ONE = "Select * from BasicUser where UserName = @Name";
         private const string INSERT = "Insert into BasicUser values(@Name, @Password)";
         private const string UPDATE = "Update BasicUser Set UserName = @Name, Password = @Password where UserName = @Name";
         private const string DELETE = "Delete from BasicUser where UserName = @Name and Password = @Password";
@@ -21,7 +21,7 @@ namespace SikonRestAPI.SQLUtility
         {
             User user = new User();
             user.UserName = reader.GetString(0);
-            user.UserName = reader.GetString(1);
+            user.Password = reader.GetString(1);
             
             return user;
         }
@@ -45,15 +45,14 @@ namespace SikonRestAPI.SQLUtility
             return userList;
         }
 
-        public User Get(string Name, string Password)
+        public User Get(string name)
         {
             User user1 = new User();
             SqlConnection conn = new SqlConnection(ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ONE, conn);
-            cmd.Parameters.AddWithValue("@Name",Name);
-            cmd.Parameters.AddWithValue("@Password", Password);
+            cmd.Parameters.AddWithValue("@Name",name);
             SqlDataReader Reader = cmd.ExecuteReader();
             if (Reader.Read())
             {

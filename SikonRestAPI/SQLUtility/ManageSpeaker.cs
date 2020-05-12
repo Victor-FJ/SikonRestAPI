@@ -9,21 +9,24 @@ namespace SikonRestAPI.SQLUtility
 {
     public class ManageSpeaker
     {
-        public static string ConnectionString = ManagementUtil.ConnectionString;
-        //public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //public static string ConnectionString = ManagementUtil.ConnectionString;
+        public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=Seacret1234;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string GET_ALL = "Select * from Speaker";
         private const string GET_ONE = "Select * from Speaker where UserName = @Name";
-        private const string INSERT = "Insert into Speaker values(@Name, @FullName, @Desc, @Image";
-        private const string UPDATE = "Update Speaker set UserName = @Name, FullName = @FullName, Desription = @Desc, Image_Name = @Image) where UserName = @Name";
+        private const string INSERT = "Insert into Speaker values(@Name, @FullName, @Desc, @Image)";
+        private const string UPDATE = "Update Speaker set UserName = @Name, FullName = @FullName, Desription = @Desc, Image_Name = @Image where UserName = @Name";
         private const string DELETE = "Delete from Speaker where UserNAme = @Name";
         private ManageBasicUser _basicUserManager = new ManageBasicUser();
+        private ManageImage _imageManager = new ManageImage();
 
         private Speaker readSpeaker(SqlDataReader reader)
         {
             Speaker speaker = new Speaker();
+            speaker.UserName = reader.GetString(0);
             speaker.FullName = reader.GetString(1);
             speaker.Description = reader.GetString(2);
             speaker.Image = reader.GetString(3);
+            speaker.Password = _basicUserManager.Get(speaker.UserName).Password;
 
             return speaker;
         }

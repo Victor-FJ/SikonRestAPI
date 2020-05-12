@@ -25,21 +25,21 @@ namespace SikonRestAPI.Controllers
         }
 
         // POST: api/Speakers
-        public void Post([FromBody]Speaker value)
+        public bool Post([FromBody]Speaker value)
         {
-            _speakerManager.Post(value);
+            return _speakerManager.Post(value);
         }
 
         // PUT: api/Speakers/5
-        public void Put([FromBody]Speaker value)
+        public bool Put([FromBody]Speaker value)
         {
-            _speakerManager.Put(value);
+           return _speakerManager.Put(value);
         }
 
         // DELETE: api/Speakers/5
-        public void Delete(Speaker speaker)
+        public bool Delete(Speaker speaker)
         {
-            _speakerManager.Delete(speaker);
+           return _speakerManager.Delete(speaker);
         }
     }
 }

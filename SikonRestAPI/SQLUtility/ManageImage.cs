@@ -8,14 +8,19 @@ namespace SikonRestAPI.SQLUtility
 {
     public class ManageImage
     {
+        //private static string ConnectionString = ManagementUtil.ConnectionString;
+        private string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=Seacret1234;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+
+
         private const string GetNamesCmd = "SELECT Name FROM Image;";
         private const string GetOneCmd = "SELECT Data FROM Image WHERE Name = @Name;";
         private const string InsertCmd = "INSERT INTO Image VALUES(@Name, @Data);";
         private const string DeleteCmd = "DELETE FROM Image WHERE Name = @Name;";
 
+
         public IEnumerable<string> GetNames()
         {
-            using (SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(GetNamesCmd, conn))
@@ -36,7 +41,7 @@ namespace SikonRestAPI.SQLUtility
 
         public byte[] Get(string name)
         {
-            using (SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(GetOneCmd, conn))
@@ -49,7 +54,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Post(string name, byte[] pixelBytes)
         {
-            using (SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(InsertCmd, conn))
@@ -64,7 +69,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Delete(string name)
         {
-            using (SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(DeleteCmd, conn))

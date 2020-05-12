@@ -11,8 +11,8 @@ namespace SikonRestAPI.SQLUtility
 {
     public class ManageParticipant
     {
-        public static string ConnectionString = ManagementUtil.ConnectionString;
-        //public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //public static string ConnectionString = ManagementUtil.ConnectionString;
+        private string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=Seacret1234;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string GET_ALL = "Select * from Participant";
         private const string GET_ONE = "Select * from Participant where UserName = @Name";
         private const string INSERT = "Insert into Participant values(@Name, @PersonType)";
@@ -25,7 +25,10 @@ namespace SikonRestAPI.SQLUtility
             Participant participant = new Participant();
             Participant.PersonType parseresult;
 
+
             Enum.TryParse(reader.GetString(1),out parseresult);
+            participant.UserName = reader.GetString(0);
+            participant.Password = _basicUserManager.Get(participant.UserName).Password;
             participant.Type = parseresult;
 
             return participant;
@@ -74,10 +77,10 @@ namespace SikonRestAPI.SQLUtility
         {
             SqlConnection conn = new SqlConnection(ConnectionString);
             conn.Open();
-
+            var test = participant.Type.ToString();
             SqlCommand cmd = new SqlCommand(INSERT, conn);
             cmd.Parameters.AddWithValue("@Name", participant.UserName);
-            cmd.Parameters.AddWithValue("@PersonType", participant.Type);
+            cmd.Parameters.AddWithValue("@PersonType", participant.Type.ToString());
 
             _basicUserManager.Post(participant);
 

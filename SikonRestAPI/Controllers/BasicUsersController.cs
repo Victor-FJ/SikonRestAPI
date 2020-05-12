@@ -19,27 +19,27 @@ namespace SikonRestAPI.Controllers
         }
 
         // GET: api/BasicUsers/5
-        public User Get(string name, string password)
+        public User Get(string name)
         {
-            return _basicUserManager.Get(name, password);
+            return _basicUserManager.Get(name);
         }
 
         // POST: api/BasicUsers
-        public void Post([FromBody]User value)
+        public bool Post([FromBody]User value)
         {
-            _basicUserManager.Post(value);
+            return _basicUserManager.Post(value);
         }
 
         // PUT: api/BasicUsers/5
-        public void Put([FromBody]User value)
+        public bool Put([FromBody]User value)
         {
-            _basicUserManager.Put(value);
+            return _basicUserManager.Put(value);
         }
 
         // DELETE: api/BasicUsers/5
-        public void Delete(User user)
+        public bool Delete(User user)
         {
-            _basicUserManager.Delete(user);
+            return _basicUserManager.Delete(user);
         }
     }
 }

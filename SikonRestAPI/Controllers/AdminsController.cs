@@ -25,21 +25,21 @@ namespace SikonRestAPI.Controllers
         }
 
         // POST: api/Admins
-        public void Post([FromBody]Admin value)
+        public bool Post([FromBody]Admin value)
         {
-            adminManager.Post(value);
+            return adminManager.Post(value);
         }
 
         // PUT: api/Admins/5
-        public void Put([FromBody]Admin value)
+        public bool Put([FromBody]Admin value)
         {
-            adminManager.Put(value);
+            return adminManager.Put(value);
         }
 
         // DELETE: api/Admins/5
-        public void Delete(Admin admin)
+        public bool Delete(Admin admin)
         {
-            adminManager.Delete(admin); 
+           return adminManager.Delete(admin); 
         }
     }
 }

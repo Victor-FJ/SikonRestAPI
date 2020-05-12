@@ -26,21 +26,21 @@ namespace SikonRestAPI.Controllers
         }
 
         // POST: api/Participants
-        public void Post([FromBody]Participant value)
+        public bool Post([FromBody]Participant value)
         {
-            _participantManager.Post(value);
+            return _participantManager.Post(value);
         }
 
         // PUT: api/Participants/5
-        public void Put([FromBody]Participant value)
+        public bool Put([FromBody]Participant value)
         {
-            _participantManager.Put(value);
+            return _participantManager.Put(value);
         }
 
         // DELETE: api/Participants/5
-        public void Delete(Participant participant)
+        public bool Delete(Participant participant)
         {
-            _participantManager.Delete(participant);
+            return _participantManager.Delete(participant);
         }
     }
 }
