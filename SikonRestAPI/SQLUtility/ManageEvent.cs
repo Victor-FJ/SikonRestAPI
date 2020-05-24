@@ -11,7 +11,7 @@ namespace SikonRestAPI.SQLUtility
     public class ManageEvent
     {
         private const string GetAllCmd = "SELECT * FROM Event";
-        private const string GetOneCmd = "SELECT * FROM Event WHERE Event_id = @Id";
+        private const string GetOneCmd = "SELECT * FROM Event WHERE Id = @Id";
         private const string InsertCmd = "INSERT INTO Event VALUES(@Event_No, @Title, @Description, @Type, @Subject, @MaxNoParticipant, @StartDate, @EndDate, @Room_No, @Speaker, @Image_Name);";
         private const string UpdateCmd = "UPDATE Event SET Title = @Title, Description = @Description, Type = @Type, Subject = @Subject, MaxNoParticipant = @MaxNoParticipant, StartDate = @StartDate, EndDate = @EndDate, Room_No = @Room_No, Speaker = @Speaker, Image_Name = @Image_Name WHERE Id = @Id;";
         private const string DeleteCmd = "DELETE FROM Event WHERE Id = @Id;";

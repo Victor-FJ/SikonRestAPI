@@ -95,6 +95,7 @@
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ManagementController.cs" />
     <Compile Include="Controllers\ParticipantsController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\SpeakersController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Global.asax.cs">
@@ -106,6 +107,7 @@
     <Compile Include="SQLUtility\ManageAdmin.cs" />
     <Compile Include="SQLUtility\ManageBasicUser.cs" />
     <Compile Include="SQLUtility\ManagementUtil.cs" />
+    <Compile Include="SQLUtility\ManageRegistration.cs" />
     <Compile Include="SQLUtility\ManageRoom.cs" />
     <Compile Include="SQLUtility\ManageParticipant.cs" />
     <Compile Include="SQLUtility\ManageSpeaker.cs" />
