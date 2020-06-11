@@ -15,7 +15,7 @@ namespace SikonRestAPITest
         public void RoomtestPostTest()
         {
             //Arrange
-            ManagementUtil.ConnectionString = "Data Source = nicolaiserver.database.windows.net; Initial Catalog = NicolaiDataBase; User ID = NicolaiAdmin; Password = Seacret1234; Connect Timeout = 30; Encrypt = True; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False;";
+            ManagementUtil.ConnectionString = null; //You did it again Nicolai
             ManageRoom manageRoom = new ManageRoom();
             Room newRoom = new Room("6A", "Bulevar 66", 20);
 
