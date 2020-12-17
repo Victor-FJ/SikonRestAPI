@@ -9,8 +9,6 @@ namespace SikonRestAPI.SQLUtility
 {
     public class ManageBasicUser
     {
-        //public static string ConnectionString = ManagementUtil.ConnectionString;
-        public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=Seacret1234;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string GET_ALL = "Select * from BasicUser";
         private const string GET_ONE = "Select * from BasicUser where UserName = @Name";
         private const string INSERT = "Insert into BasicUser values(@Name, @Password)";
@@ -29,7 +27,7 @@ namespace SikonRestAPI.SQLUtility
         public IEnumerable<User> Get()
         {
             List<User> userList = new List<User>();
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ALL, conn);
@@ -48,7 +46,7 @@ namespace SikonRestAPI.SQLUtility
         public User Get(string name)
         {
             User user1 = new User();
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ONE, conn);
@@ -67,7 +65,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Post(User user)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(INSERT, conn);
@@ -83,7 +81,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Put(User user)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(UPDATE, conn);
@@ -99,7 +97,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Delete(User user)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(DELETE, conn);

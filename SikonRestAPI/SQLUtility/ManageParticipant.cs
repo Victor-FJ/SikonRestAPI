@@ -11,8 +11,6 @@ namespace SikonRestAPI.SQLUtility
 {
     public class ManageParticipant
     {
-        //public static string ConnectionString = ManagementUtil.ConnectionString;
-        private string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=Seacret1234;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string GET_ALL = "Select * from Participant";
         private const string GET_ONE = "Select * from Participant where UserName = @Name";
         private const string INSERT = "Insert into Participant values(@Name, @PersonType)";
@@ -37,7 +35,7 @@ namespace SikonRestAPI.SQLUtility
         public IEnumerable<Participant> Get()
         {
             List<Participant> participantList = new List<Participant>();
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ALL, conn);
@@ -56,7 +54,7 @@ namespace SikonRestAPI.SQLUtility
         public Participant Get(string name)
         {
             Participant participant1 = new Participant();
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ONE, conn);
@@ -75,7 +73,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Post(Participant participant)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
             var test = participant.Type.ToString();
             SqlCommand cmd = new SqlCommand(INSERT, conn);
@@ -92,7 +90,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Put(Participant participant)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(UPDATE, conn);
@@ -110,7 +108,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Delete(Participant participant)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(DELETE, conn);

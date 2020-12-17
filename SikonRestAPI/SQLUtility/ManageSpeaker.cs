@@ -9,8 +9,6 @@ namespace SikonRestAPI.SQLUtility
 {
     public class ManageSpeaker
     {
-        //public static string ConnectionString = ManagementUtil.ConnectionString;
-        public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=Seacret1234;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string GET_ALL = "Select * from Speaker";
         private const string GET_ONE = "Select * from Speaker where UserName = @Name";
         private const string INSERT = "Insert into Speaker values(@Name, @FullName, @Desc, @Image)";
@@ -34,7 +32,7 @@ namespace SikonRestAPI.SQLUtility
         public IEnumerable<Speaker> Get()
         {
             List<Speaker> speakerList = new List<Speaker>();
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ALL, conn);
@@ -53,7 +51,7 @@ namespace SikonRestAPI.SQLUtility
         public Speaker Get(string name)
         {
             Speaker speaker1 = new Speaker();
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ONE, conn);
@@ -72,7 +70,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Post(Speaker speaker)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
             
             SqlCommand cmd = new SqlCommand(INSERT, conn);
@@ -93,7 +91,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Put(Speaker speaker)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(UPDATE, conn);
@@ -113,7 +111,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Delete(Speaker speaker)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(DELETE, conn);

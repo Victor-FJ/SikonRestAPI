@@ -10,8 +10,6 @@ namespace SikonRestAPI.SQLUtility
 {
     public class ManageAdmin
     {
-        //public static string ConnectionString = ManagementUtil.ConnectionString;
-        public string ConnectionString = "Data Source=nicolaiserver.database.windows.net;Initial Catalog=NicolaiDataBase;User ID=NicolaiAdmin;Password=Seacret1234;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         private const string GET_ALL = "Select * from Admin";
         private const string GET_ONE = "Select * from Admin where UserName = @Name";
         private const string INSERT = "Insert into Admin values(@Name, @PhoneNumber)";
@@ -33,7 +31,7 @@ namespace SikonRestAPI.SQLUtility
         public IEnumerable<Admin> Get()
         {
             List<Admin> adminList = new List<Admin>();
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ALL, conn);
@@ -52,7 +50,7 @@ namespace SikonRestAPI.SQLUtility
         public Admin Get(string name)
         {
             Admin admin1 = new Admin();
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(GET_ONE, conn);
@@ -71,7 +69,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Post(Admin admin)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(INSERT, conn);
@@ -89,7 +87,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Put(Admin admin)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(UPDATE, conn);
@@ -107,7 +105,7 @@ namespace SikonRestAPI.SQLUtility
 
         public bool Delete(Admin admin)
         {
-            SqlConnection conn = new SqlConnection(ConnectionString);
+            SqlConnection conn = new SqlConnection(ManagementUtil.ConnectionString);
             conn.Open();
 
             SqlCommand cmd = new SqlCommand(DELETE, conn);
